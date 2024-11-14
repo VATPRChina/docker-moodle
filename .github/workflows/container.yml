@@ -28,8 +28,10 @@ jobs:
           images: |
             ghcr.io/${{ github.repository }}
           tags: |
+            type=raw,value=latest
+            type=sha,prefix=4.5.{{date 'YYYYMMDD'}}-
             type=ref,event=branch
-            type=semver,pattern=4.5.{{date 'YYYYMMDD'}}-{{sha}}
+            type=schedule,pattern=4.5.{{date 'YYYYMMDD'}}-{{sha}}
 
       - name: Publish images
         uses: docker/build-push-action@v5
