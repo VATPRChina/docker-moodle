@@ -22,6 +22,9 @@ $CFG->wwwroot = getenv('MOODLE_WWWROOT') ?: 'https://example.com';
 $CFG->dataroot = getenv('MOODLE_DATA_ROOT') ?: '/var/www/moodledata';
 $CFG->admin = getenv('MOODLE_ADMIN') ?: 'admin';
 
+$CFG->reverseproxy = true;
+$CFG->sslproxy = true;
+
 $CFG->directorypermissions = 0777;
 
 require_once(__DIR__ . '/lib/setup.php');
