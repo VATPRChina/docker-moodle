@@ -1,6 +1,6 @@
 FROM php:8.2-apache
 
-RUN a2enmod rewrite
+RUN a2enmod rewrite remoteip
 
 RUN apt-get update && apt-get install -y \
     locales-all zip libzip-dev libpng-dev libicu-dev libxml2-dev && \
