@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y \
     locales-all zip libzip-dev libpng-dev libicu-dev libxml2-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-RUN docker-php-ext-install zip gd intl soap exif mysqli opcache
+RUN docker-php-ext-install zip gd intl soap exif mysqli opcache pgsql
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 RUN echo 'max_input_vars = 10000' >> /usr/local/etc/php/conf.d/docker-php-moodle.ini
 COPY php-opcache.ini /usr/local/etc/php/conf.d/opcache.ini
