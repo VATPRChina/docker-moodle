@@ -1,7 +1,7 @@
 FROM php:8.2-apache
 
 RUN apt-get update && apt-get install -y \
-    locales-all zip libzip-dev libpng-dev libicu-dev libxml2-dev && \
+    locales-all zip libzip-dev libpng-dev libicu-dev libxml2-dev libpq-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 RUN docker-php-ext-install zip gd intl soap exif mysqli opcache pgsql
