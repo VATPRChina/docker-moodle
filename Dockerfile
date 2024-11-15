@@ -1,7 +1,5 @@
 FROM php:8.2-apache
 
-RUN a2enmod rewrite
-
 RUN apt-get update && apt-get install -y \
     locales-all zip libzip-dev libpng-dev libicu-dev libxml2-dev && \
     apt-get clean && \
@@ -10,6 +8,10 @@ RUN docker-php-ext-install zip gd intl soap exif mysqli opcache
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 RUN echo 'max_input_vars = 10000' >> /usr/local/etc/php/conf.d/docker-php-moodle.ini
 COPY php-opcache.ini /usr/local/etc/php/conf.d/opcache.ini
+
+RUN a2enmod rewrite remoteip
+ADD remoteip.conf /etc/apache2/conf-enabled/remoteip.conf
+ADD trusted-proxies.lst /etc/apache2/trusted-proxies.lst
 
 RUN curl -fsSL -o /tmp/moodle.tgz https://download.moodle.org/download.php/direct/stable405/moodle-latest-405.tgz && \
     tar -xzf /tmp/moodle.tgz -C /var/www/html --strip-components=1 && \
