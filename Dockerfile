@@ -13,7 +13,7 @@ RUN a2enmod rewrite remoteip
 ADD remoteip.conf /etc/apache2/conf-enabled/remoteip.conf
 ADD trusted-proxies.lst /etc/apache2/trusted-proxies.lst
 
-RUN curl -fsSL -o /tmp/moodle.tgz https://download.moodle.org/download.php/direct/stable405/moodle-latest-405.tgz && \
+RUN curl -fsSL -o /tmp/moodle.tgz https://download.moodle.org/download.php/direct/stable500/moodle-latest-500.tgz && \
     tar -xzf /tmp/moodle.tgz -C /var/www/html --strip-components=1 && \
     rm /tmp/moodle.tgz
 RUN mkdir -p /var/www/moodledata && \
@@ -23,21 +23,21 @@ RUN mkdir -p /var/www/moodledata && \
 COPY config.php /var/www/html/config.php
     
 RUN curl -fsSL -o /tmp/zh_cn.zip \
-    https://download.moodle.org/download.php/direct/langpack/4.5/zh_cn.zip && \
+    https://download.moodle.org/download.php/direct/langpack/5.0/zh_cn.zip && \
     unzip /tmp/zh_cn.zip -d /tmp && \
     mv /tmp/zh_cn /var/www/moodledata/lang && \
   curl -fsSL -o /tmp/availability_coursecompleted.zip \
-    https://moodle.org/plugins/download.php/33332/availability_coursecompleted_moodle45_2024100700.zip && \
+    https://moodle.org/plugins/download.php/36011/availability_coursecompleted_moodle50_2025043000.zip && \
     mkdir -p /tmp/mods/availability && \
     unzip /tmp/availability_coursecompleted.zip -d /tmp/mods/availability && \
     mv /tmp/mods/availability/coursecompleted /var/www/html/availability/condition/coursecompleted && \
   curl -fsSL -o /tmp/enrol_coursecompleted.zip \
-    https://moodle.org/plugins/download.php/33335/enrol_coursecompleted_moodle45_2024100700.zip && \
+    https://moodle.org/plugins/download.php/35723/enrol_coursecompleted_moodle50_2025041600.zip && \
     mkdir -p /tmp/mods/enrol && \
     unzip /tmp/enrol_coursecompleted.zip -d /tmp/mods/enrol && \
     mv /tmp/mods/enrol/coursecompleted /var/www/html/enrol/coursecompleted && \
   curl -fsSL -o /tmp/editor_marklar.zip \
-    https://moodle.org/plugins/download.php/31840/editor_marklar_moodle44_2024030602.zip && \
+    https://moodle.org/plugins/download.php/35109/editor_marklar_moodle45_2024030603.zip && \
     mkdir -p /tmp/mods/editor && \
     unzip /tmp/editor_marklar.zip -d /tmp/mods/editor && \
     mv /tmp/mods/editor/marklar /var/www/html/lib/editor/marklar && \
