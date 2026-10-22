@@ -50,7 +50,10 @@ ADD remoteip.conf /etc/apache2/conf-enabled/remoteip.conf
 ADD trusted-proxies.lst /etc/apache2/trusted-proxies.lst
 
 COPY --from=build /var/www/moodle /var/www/moodle
-RUN rm -rf /var/www/html && ln -s /var/www/moodle/public /var/www/html
+RUN rm -rf /var/www/html && \
+  ln -s /var/www/moodle/public /var/www/html && \
+  chown -R www-data:www-data /var/www/moodle && \
+  chmod -R 755 /var/www/moodle
 COPY --from=build /var/www/moodledata /var/www/moodledata
 RUN chown -R www-data:www-data /var/www/moodledata && \
   chmod -R 777 /var/www/moodledata
