@@ -32,6 +32,8 @@ RUN curl -fsSL -o /tmp/zh_cn.zip \
   unzip /tmp/availability_othercompleted.zip -d /tmp/mods/availability && \
   mv /tmp/mods/availability/othercompleted /var/www/moodle/public/availability/condition/othercompleted
 
+COPY .htaccess /var/www/moodle/public/.htaccess
+
 FROM php:8.4.27-apache AS run
 
 RUN apt-get update && apt-get install -y \

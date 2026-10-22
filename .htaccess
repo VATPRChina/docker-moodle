@@ -1,0 +1,46 @@
+DirectoryIndex index.php
+
+# Essential if your Moodle environment utilizes symlinks
+Options +FollowSymLinks
+
+# Safely disable open directory browsing
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # ==========================================
+    # 1. PATH SECURITY RESTRICTIONS
+    # ==========================================
+    RewriteRule "(\/vendor\/)" - [F]
+    RewriteRule "(\/node_modules\/)" - [F]
+    RewriteRule "(^|/)\.(?!well-known\/)" - [F]
+    RewriteRule "(composer\.json)" - [F]
+    RewriteRule "(\.lock)" - [F]
+    RewriteRule "(\/environment.xml)" - [F]
+    RewriteRule "(\/install.xml)" - [F]
+    RewriteRule "(\/README)" - [F]
+    RewriteRule "(\/readme)" - [F]
+    RewriteRule "(\/readme_moodle)" - [F]
+    RewriteRule "(\/upgrade\.txt)" - [F]
+    RewriteRule "(\/UPGRADING\.md)" - [F]
+    RewriteRule "(phpunit\.xml\.dist)" - [F]
+    RewriteRule "(\/tests\/behat\/)" - [F]
+    RewriteRule "(\/fixtures\/)" - [F]
+    RewriteRule "(\/upgrade\.txt|UPGRADING\.md|UPGRADING\-CURRENT\.md)" - [F]
+
+    # ==========================================
+    # 2. HARDCODED MOODLE ENVIRONMENT TEST ROUTES
+    # ==========================================
+    RewriteRule ^core/check/controller/test$ r.php [QSA,L]
+    RewriteRule ^api/rest/v2/openapi.json$ r.php [QSA,L]
+    RewriteRule ^lib/exampleshimroute2\.php$ r.php [QSA,L]
+
+    # ==========================================
+    # 3. CATCH-ALL ROUTING FALLBACK
+    # ==========================================
+    # If the requested file or directory does not exist physically on disk, route to r.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ r.php [QSA,L]
+</IfModule>
