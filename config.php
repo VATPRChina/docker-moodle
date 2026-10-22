@@ -24,6 +24,7 @@ $CFG->admin = getenv('MOODLE_ADMIN') ?: 'admin';
 
 $CFG->reverseproxy = false;
 $CFG->sslproxy = true;
+$CFG->routerconfigured = true;
 
 $CFG->directorypermissions = 0777;
 
