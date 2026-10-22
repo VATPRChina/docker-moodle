@@ -27,22 +27,17 @@ RUN curl -fsSL -o /tmp/zh_cn.zip \
     unzip /tmp/zh_cn.zip -d /tmp && \
     mv /tmp/zh_cn /var/www/moodledata/lang && \
   curl -fsSL -o /tmp/availability_coursecompleted.zip \
-    https://moodle.org/plugins/download.php/36011/availability_coursecompleted_moodle50_2025043000.zip && \
+    https://marketplace.moodle.com/api/plugins/availability_coursecompleted/versions/2025043000/download && \
     mkdir -p /tmp/mods/availability && \
     unzip /tmp/availability_coursecompleted.zip -d /tmp/mods/availability && \
     mv /tmp/mods/availability/coursecompleted /var/www/html/availability/condition/coursecompleted && \
   curl -fsSL -o /tmp/enrol_coursecompleted.zip \
-    https://moodle.org/plugins/download.php/35723/enrol_coursecompleted_moodle50_2025041600.zip && \
+    https://marketplace.moodle.com/api/plugins/enrol_coursecompleted/versions/2025041600/download && \
     mkdir -p /tmp/mods/enrol && \
     unzip /tmp/enrol_coursecompleted.zip -d /tmp/mods/enrol && \
     mv /tmp/mods/enrol/coursecompleted /var/www/html/enrol/coursecompleted && \
-  curl -fsSL -o /tmp/editor_marklar.zip \
-    https://moodle.org/plugins/download.php/35109/editor_marklar_moodle45_2024030603.zip && \
-    mkdir -p /tmp/mods/editor && \
-    unzip /tmp/editor_marklar.zip -d /tmp/mods/editor && \
-    mv /tmp/mods/editor/marklar /var/www/html/lib/editor/marklar && \
   curl -fsSL -o /tmp/availability_othercompleted.zip \
-    https://moodle.org/plugins/download.php/29236/availability_othercompleted_moodle42_2023050310.zip && \
+    https://marketplace.moodle.com/api/plugins/availability_othercompleted/versions/2023050310/download && \
     mkdir -p /tmp/mods/availability && \
     unzip /tmp/availability_othercompleted.zip -d /tmp/mods/availability && \
     mv /tmp/mods/availability/othercompleted /var/www/html/availability/condition/othercompleted
